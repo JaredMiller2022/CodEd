@@ -1,0 +1,35 @@
+{% extends "layout.html" %}
+{% block content %}
+	<div class="center">
+		<h1>{{ title }}</h1>
+		{% for line in desc %}
+	        <p>{{ line }}</p>
+	    {% endfor %}
+	</div>
+
+  <!-- THE PLAYLIST -->
+  {% for playlist in playlists %}
+  <h3>{{ playlist }}</h3>
+  <div class="vid-list-container">
+    <div class="vid-list" style="--vids:{{ sizes[playlist] }};">
+      {% for video, id in playlists[playlist].items() %}
+        <a href="{{ url_for('lesson', title=title, lesson=playlist, current_vid=id) }}">
+	        <div class="vid-item">
+	          <div class='thumb'><img src="{{ 'http://img.youtube.com/vi/' + id + '/0.jpg' }}"></div>
+	          <div class="desc">{{ video }}</div>
+	        </div>
+	    </a>
+      {% endfor %}
+    </div>
+  </div>
+  {% endfor %}
+
+{% endblock %}
+
+
+
+
+
+
+
+
